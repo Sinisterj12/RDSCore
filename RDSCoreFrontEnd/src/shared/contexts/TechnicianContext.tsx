@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import type { Technician } from '../../customer/types';
+import type { Technician } from '../../../../Shared/types/technician';
 
 interface TechnicianContextType {
   technicians: Technician[];
@@ -16,20 +16,16 @@ const initialTechnicians: Technician[] = [
     id: '1',
     name: 'John Smith',
     email: 'john.smith@rdscore.com',
-    phone: '(555) 123-4567',
     status: 'available',
-    specialty: ['printer', 'register'],
-    currentTask: 'Reviewing POS system alerts',
+    proficiencies: ['printer', 'register'],
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
   },
   {
     id: '2',
     name: 'Sarah Johnson',
     email: 'sarah.j@rdscore.com',
-    phone: '(555) 234-5678',
     status: 'busy',
-    specialty: ['network', 'security'],
-    currentTask: 'Troubleshooting network issues at Store #123',
+    proficiencies: ['network', 'security'],
     avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
   }
 ];

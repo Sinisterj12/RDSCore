@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Plus, Edit2, Trash2, X } from 'lucide-react';
-import type { Technician } from '../../customer/types';
+import type { Technician } from '../../../../Shared/types/technician';
 import { useTechnicians } from '../../shared/contexts/TechnicianContext';
 
 interface TeamManagerProps {}
@@ -83,8 +83,8 @@ const TeamManager: React.FC<TeamManagerProps> = () => {
                 <span>{tech.email}</span>
               </div>
               <div>
-                <span className="text-gray-500">Specialties: </span>
-                {tech.specialty.join(', ')}
+                <span className="text-gray-500">Proficiencies: </span>
+                {tech.proficiencies.join(', ')}
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ const TechnicianForm: React.FC<TechnicianFormProps> = ({
       name: '',
       email: '',
       status: 'available',
-      specialty: [],
+      proficiencies: [],
       avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop'
     }
   );
@@ -234,14 +234,14 @@ const TechnicianForm: React.FC<TechnicianFormProps> = ({
 
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-1">
-          Specialties (comma-separated)
+          Proficiencies (comma-separated)
         </label>
         <input
           type="text"
-          value={formData.specialty?.join(', ')}
+          value={formData.proficiencies?.join(', ')}
           onChange={(e) => setFormData({
             ...formData,
-            specialty: e.target.value.split(',').map(s => s.trim())
+            proficiencies: e.target.value.split(',').map(s => s.trim())
           })}
           className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
         />

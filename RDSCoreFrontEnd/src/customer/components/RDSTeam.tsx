@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { useTechnicians } from '../../shared/contexts/TechnicianContext';
 
 const RDSTeam: React.FC = () => {
@@ -15,11 +15,13 @@ const RDSTeam: React.FC = () => {
             className="bg-gray-50 rounded-lg p-4 border border-gray-200"
           >
             <div className="flex items-center space-x-3 mb-3">
-              <img
-                src={tech.avatar}
-                alt={tech.name}
-                className="w-12 h-12 rounded-full"
-              />
+              {tech.avatar && (
+                <img
+                  src={tech.avatar}
+                  alt={tech.name}
+                  className="w-12 h-12 rounded-full"
+                />
+              )}
               <div>
                 <h4 className="font-semibold">{tech.name}</h4>
                 <span className={`text-sm ${
@@ -33,24 +35,17 @@ const RDSTeam: React.FC = () => {
             </div>
 
             <div className="space-y-2 text-sm">
-              <div className="flex items-center space-x-2 text-gray-600">
+              <a 
+                href={`mailto:${tech.email}`} 
+                className="flex items-center space-x-2 text-gray-600 hover:text-blue-600"
+              >
                 <Mail className="w-4 h-4" />
                 <span>{tech.email}</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-600">
-                <Phone className="w-4 h-4" />
-                <span>{tech.phone}</span>
-              </div>
+              </a>
               <div className="text-gray-600">
-                <span className="text-gray-500">Specialties: </span>
-                {tech.specialty.join(', ')}
+                <span className="text-gray-500">Proficiencies: </span>
+                {tech.proficiencies.join(', ')}
               </div>
-              {tech.status !== 'offline' && tech.currentTask && (
-                <div className="text-gray-600">
-                  <span className="text-gray-500">Current Task: </span>
-                  {tech.currentTask}
-                </div>
-              )}
             </div>
           </div>
         ))}
