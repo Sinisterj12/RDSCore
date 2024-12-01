@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, MoreVertical, Calendar, MapPin, User } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 // Mock data for frontend development
 const MOCK_TICKETS = [
@@ -84,7 +84,6 @@ const TicketManager: React.FC = () => {
             </select>
             
             <button className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
-              <Filter className="h-5 w-5 text-gray-600" />
               <span>More Filters</span>
             </button>
           </div>
@@ -122,22 +121,19 @@ const TicketManager: React.FC = () => {
                     
                     <div className="mt-4 flex items-center space-x-6 text-sm text-gray-500">
                       <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-1" />
                         {ticket.store} - {ticket.location}
                       </div>
                       <div className="flex items-center">
-                        <User className="h-4 w-4 mr-1" />
                         Assigned to {ticket.assignedTo}
                       </div>
                       <div className="flex items-center">
-                        <Calendar className="h-4 w-4 mr-1" />
                         Updated {new Date(ticket.lastUpdated).toLocaleDateString()}
                       </div>
                     </div>
                   </div>
                   
                   <button className="p-2 hover:bg-gray-100 rounded-lg">
-                    <MoreVertical className="h-5 w-5 text-gray-400" />
+                    <span>More</span>
                   </button>
                 </div>
               </div>

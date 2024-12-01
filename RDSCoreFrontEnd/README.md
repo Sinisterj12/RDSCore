@@ -1,8 +1,64 @@
-![RDS Core Logo](https://via.placeholder.com/150)
+# AI-Friendly README for RDS Core Frontend
 
-![npm](https://img.shields.io/badge/npm-v1.0.0-blue)
-![license](https://img.shields.io/badge/license-MIT-green)
-![build](https://img.shields.io/badge/build-passing-brightgreen)
+## Project Overview
+
+Welcome to the **RDS Core Frontend**! This project is part of a larger system designed to simplify store-level operations and management. The frontend is built using **React** and **TypeScript**, with styling provided by **Tailwind CSS**.
+
+### Purpose
+- Simplify store-level operations and management.
+
+### Current Status
+- In development, with recent updates to the dashboard and shared components.
+- Still working on the gui for the management portal.
+- getting the management theme more in line with the customer theme.
+- working on the customer theme, needs to be more red.
+- Need to name project RDS Core and add a logo to the management portal
+- Need to re-design the management portal, it's not looking right.
+- Need to add a login form to the management portal.
+- Need to add a stores section to the management portal, we keep track of store numbers.
+- Need to add a customer theme to the customer portal.
+- Need to add a management theme to the management portal.
+- Need to add a stores section to the management portal, we keep track of store numbers.
+- Need to add login form to the customer portal.
+- Need to add a stores section to the customer portal where we register their app/store number.
+
+## Your Learning Goals
+
+- **React & TypeScript**: Enhance your skills in building modern web applications.
+- **Tailwind CSS**: Learn to use Tailwind CSS for styling and responsive design. 
+- **UI/UX Design**: Focus on creating a user-friendly interface.
+- **Project Management**: Learn to organize and manage a growing codebase.
+
+## Current Challenges
+
+- **State Management**: Understanding and implementing effective state management techniques.
+- **Responsive Design**: Ensuring the application looks great on all devices.
+- **Performance Optimization**: Identifying and addressing performance bottlenecks.
+
+## Recent Changes
+
+- **Dashboard Redesign**: Implemented a new, modern dashboard layout with interactive elements.
+- **Shared Components**: Moved shared components and utilities to a centralized location for better organization.
+- **Code Cleanup**: Removed unused imports and improved code readability.
+
+## Shared Folder
+
+The `Shared` folder contains:
+- **Types**: Common TypeScript types used across the application.
+- **Constants**: Shared constants for API endpoints, statuses, etc.
+- **Utilities**: Reusable utility functions for validation and formatting.
+
+## Future Plans
+
+- **Lazy Loading**: Implement lazy loading for improved performance.
+- **Real-Time Features**: Add WebSockets for real-time updates and notifications.
+- **User Feedback**: Gather and incorporate user feedback to enhance the user experience.
+
+## How to Use This README
+
+This README serves as a guide to catch the AI assistant up to date as it picks up where it left off last time. It provides context about the project's current state, your learning objectives, and the challenges you're facing.
+
+---
 
 # RDS Core Support System
 
@@ -136,3 +192,8 @@ The system is structured to support both the RDS Management and Customer Portals
 - **WebSockets**: Real-time updates and notifications across the system.
 
 This architecture allows for a scalable and maintainable system, facilitating future enhancements and integrations.
+
+## Additional Notes
+
+- Remember to review the shared folder for any reusable components.
+- Check the current challenges section for areas to focus on when you return.

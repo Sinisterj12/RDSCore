@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Users, Ticket, Settings, MessageCircle, Bell, Store, Server } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Users, Ticket, MessageCircle, Bell, Store, Server, Activity } from 'lucide-react';
 import TicketManager from '../components/TicketManager';
 import TeamManager from '../components/TeamManager';
+import DashboardCard from '../components/DashboardCard';
+import StatusMetrics from '../components/StatusMetrics';
 
 interface ManagementSection {
   id: string;
@@ -22,7 +25,7 @@ const ManagementDashboard: React.FC = () => {
       description: 'View and manage support tickets, assign technicians, and track resolution status',
       icon: Ticket,
       stats: '24 Active',
-      color: 'text-blue-600'
+      color: 'text-blue-500'
     },
     {
       id: 'team',
@@ -30,7 +33,7 @@ const ManagementDashboard: React.FC = () => {
       description: 'Manage technician profiles, availability, and assignments',
       icon: Users,
       stats: '8 Online',
-      color: 'text-green-600'
+      color: 'text-green-500'
     },
     {
       id: 'stores',
@@ -38,7 +41,7 @@ const ManagementDashboard: React.FC = () => {
       description: 'Configure store settings, manage locations and equipment',
       icon: Store,
       stats: '156 Active',
-      color: 'text-purple-600'
+      color: 'text-purple-500'
     },
     {
       id: 'alerts',
@@ -46,73 +49,114 @@ const ManagementDashboard: React.FC = () => {
       description: 'Configure system alerts, maintenance notifications, and customer communications',
       icon: Bell,
       stats: '3 Active',
-      color: 'text-yellow-600'
-    },
-    {
-      id: 'feedback',
-      name: 'Feedback Management',
-      description: 'Review and respond to customer feedback and suggestions',
-      icon: MessageCircle,
-      stats: '12 New',
-      color: 'text-pink-600'
+      color: 'text-yellow-500'
     },
     {
       id: 'system',
-      name: 'System Settings',
-      description: 'Configure global settings, API keys, and system preferences',
+      name: 'System Health',
+      description: 'Monitor system performance, view logs, and manage configurations',
       icon: Server,
-      color: 'text-gray-600'
+      stats: '98% Uptime',
+      color: 'text-emerald-500'
+    },
+    {
+      id: 'support',
+      name: 'Support Center',
+      description: 'Access support resources, documentation, and communication tools',
+      icon: MessageCircle,
+      stats: '2m Avg. Response',
+      color: 'text-pink-500'
     }
   ];
 
+  const renderContent = () => {
+    switch (activeSection) {
+      case 'tickets':
+        return <TicketManager />;
+      case 'team':
+        return <TeamManager />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-white">RDS Core Management</h1>
-          <p className="text-gray-400">Central operations dashboard</p>
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <motion.h1 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-3xl font-bold text-white"
+            >
+              Management Dashboard
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-gray-400 mt-2"
+            >
+              Monitor and manage your RDS system
+            </motion.p>
+          </div>
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center space-x-4"
+          >
+            <div className="flex items-center space-x-2 bg-gray-800/50 rounded-lg px-4 py-2 border border-gray-700/30">
+              <Activity className="h-5 w-5 text-green-400" />
+              <span className="text-gray-300">System Status: Operational</span>
+            </div>
+          </motion.div>
         </div>
 
-        {!activeSection ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sections.map((section) => {
-              const Icon = section.icon;
-              return (
-                <button
-                  key={section.id}
-                  onClick={() => setActiveSection(section.id)}
-                  className="bg-gray-800 border-2 border-gray-700 rounded-lg p-6 transition-all hover:scale-102 hover:shadow-lg hover:border-gray-600 text-left"
-                >
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className={`p-3 rounded-lg bg-gray-700 ${section.color}`}>
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">{section.name}</h3>
-                      {section.stats && (
-                        <span className="text-sm text-gray-400">{section.stats}</span>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-gray-400 text-sm">{section.description}</p>
-                </button>
-              );
-            })}
-          </div>
-        ) : (
-          <div>
-            <button
-              onClick={() => setActiveSection(null)}
-              className="mb-6 text-gray-400 hover:text-white flex items-center space-x-2"
+        {/* Status Metrics */}
+        <StatusMetrics />
+
+        {/* Main Content */}
+        <AnimatePresence mode="wait">
+          {activeSection ? (
+            <motion.div
+              key="content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="mb-8"
             >
-              <span>← Back to Dashboard</span>
-            </button>
-            
-            {activeSection === 'tickets' && <TicketManager />}
-            {activeSection === 'team' && <TeamManager />}
-            {/* Other sections will be added here */}
-          </div>
-        )}
+              <button
+                onClick={() => setActiveSection(null)}
+                className="mb-4 text-gray-400 hover:text-white flex items-center space-x-2"
+              >
+                <span>← Back to Dashboard</span>
+              </button>
+              {renderContent()}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="grid"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {sections.map((section) => (
+                <DashboardCard
+                  key={section.id}
+                  title={section.name}
+                  icon={<section.icon className={`h-6 w-6 ${section.color}`} />}
+                  description={section.description}
+                  stats={section.stats}
+                  color={section.color}
+                  onClick={() => setActiveSection(section.id)}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
